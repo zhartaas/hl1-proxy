@@ -1,0 +1,57 @@
+definitions:
+  main.ProxyRequest:
+    properties:
+      headers:
+        additionalProperties:
+          items:
+            type: string
+          type: array
+        type: object
+      method:
+        type: string
+      url:
+        type: string
+    type: object
+  main.ProxyResponse:
+    properties:
+      headers:
+        additionalProperties:
+          items:
+            type: string
+          type: array
+        type: object
+      id:
+        type: integer
+      length:
+        type: integer
+      status:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: swagger for proxy-server
+  title: HL-Task1 Proxy Swagger
+  version: "1.0"
+paths:
+  /proxy:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Request to outer service
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/main.ProxyRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.ProxyResponse'
+      summary: Sends request to outer service
+      tags:
+      - Proxy
+swagger: "2.0"
